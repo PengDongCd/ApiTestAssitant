@@ -1,0 +1,6 @@
+- test:
+    name: get token
+    api: /api/internal/campaigns
+    params: {agency_id: 8809}
+    validations:
+        - "eq": ["status_code", 200]
