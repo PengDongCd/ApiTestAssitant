@@ -3,40 +3,22 @@ from pyunitreport import HTMLTestRunner
 import parse_api_test_cases
 import os
 import time
+from api_test_case import ApiTestCase
+from parse_api_test_cases import TestCaseParser
 
-class ApiTestCase(unittest.TestCase):
-    def __init__(self, testcase_dict):
-        super(ApiTestCase, self).__init__()
-        self.testcase_dict = testcase_dict
-
-    def runTest(self):
-        print(self.testcase_dict['url'])
-        self.assertEqual(self.testcase_dict['status_code'], 200)
-
-
-testcase_dict01 = {
-    'name': 'test01',
-    'url': "https://int-vebweb-vip.dev.activenetwork.com/api/internal/campaigns?agency_id=8809",
-    'status_code': 200
-}
-testcase_dict02 = {
-    'name': 'test02',
-    'url': "https://int-vebweb-vip.dev.activenetwork.com/api/internal/campaigns?agency_id=8809",
-    'status_code': 200
-}
 test_suite_name = 'demo'
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
-    ApiTestCase.runTest.__doc__ = 'testcase_dict01'
-    test = ApiTestCase(testcase_dict01)
+    tcp = TestCaseParser('demo_test_suite')
+    test_cases_list = tcp.get_test_case_list()
 
-    suite.addTest(test)
+    for test_case in test_cases_list:
+        ApiTestCase.runTest.__doc__ = test_case['name']
+        test = ApiTestCase(test_case)
+        suite.addTest(test)
 
-    ApiTestCase.runTest.__doc__ = 'testcase_dict02'
-    test = ApiTestCase(testcase_dict02)
 
-    suite.addTest(test)
     test_report_folder_path = os.path.join(os.getcwd(), 'tests/reports/')
     if not os.path.exists(test_report_folder_path):
         os.makedirs(test_report_folder_path)

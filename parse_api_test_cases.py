@@ -16,9 +16,5 @@ class TestCaseParser:
         self.get_file_path_by_test_suite_name()
         with io.open(self.file_path, 'r', encoding='utf-8') as stream:
             test_case_list = yaml.load(stream)
-            return test_case_list
-
-
-
-tcp = TestCaseParser('demo_test_suite')
-tcp.get_test_case_list()
+            for test_case in test_case_list:
+                yield test_case['test']

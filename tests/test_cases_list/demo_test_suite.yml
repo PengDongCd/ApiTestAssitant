@@ -1,6 +1,24 @@
 - test:
-    name: get token
+    name: 'test_api01'
+    host: https://int-vebweb-vip.dev.activenetwork.com
     api: /api/internal/campaigns
-    params: {agency_id: 8809}
+    method: GET
+    qurey_params:
+      agency_id: 8809
+    request_params:
+      headers:
+        content-type:
+    validations:
+        - "eq": ["status_code", 200]
+- test:
+    name: 'test_api02'
+    host: https://int-vebweb-vip.dev.activenetwork.com
+    api: /api/internal/campaigns
+    method: GET
+    qurey_params:
+      agency_id: 2323
+    request_params:
+      headers:
+        content-type:
     validations:
         - "eq": ["status_code", 200]
