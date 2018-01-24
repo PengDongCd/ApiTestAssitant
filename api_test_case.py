@@ -1,6 +1,7 @@
 import unittest
 import requests
 import urllib.parse
+import response_parser
 
 class ApiTestCase(unittest.TestCase):
     def __init__(self, testcase_dict):

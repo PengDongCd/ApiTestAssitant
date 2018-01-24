@@ -9,7 +9,12 @@
       headers:
         content-type:
     validations:
-        - "eq": ["status_code", 200]
+        -
+          comparator: "eq"
+          check: "status_code"
+          expected: 200
+        -
+
 - test:
     name: 'test_api02'
     host: https://int-vebweb-vip.dev.activenetwork.com
