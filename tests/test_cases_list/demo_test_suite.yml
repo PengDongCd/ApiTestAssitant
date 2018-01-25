@@ -13,7 +13,9 @@
           comparator: "eq"
           check: "status_code"
           expected: 200
-        -
+        - comparator: "eq"
+          check: "data>>[0]>>attributes>>name"
+          expected: shit campaign update
 
 - test:
     name: 'test_api02'
@@ -26,4 +28,7 @@
       headers:
         content-type:
     validations:
-        - "eq": ["status_code", 200]
+        -
+          comparator: "eq"
+          check: "status_code"
+          expected: 200

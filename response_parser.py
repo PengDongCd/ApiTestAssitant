@@ -10,4 +10,5 @@ class ResponseParser:
         return self.status_code
 
     def response_body(self):
-        self.response_body = json.loads(self.repsonse)
+        self.response_body = json.loads(self.repsonse.text)
+        return self.response_body

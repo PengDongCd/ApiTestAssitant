@@ -5,12 +5,19 @@ import os
 import time
 from api_test_case import ApiTestCase
 from parse_api_test_cases import TestCaseParser
+import argparse
 
-test_suite_name = 'demo'
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='API Test Assistant, Help you to do api test.')
+    parser.add_argument(
+        'test_suite_name', help="Please add your test suite's path"
+    )
+    args = parser.parse_args()
+    test_suite_name = args.test_suite_name
     suite = unittest.TestSuite()
-    tcp = TestCaseParser('demo_test_suite')
+    tcp = TestCaseParser(test_suite_name)
     test_cases_list = tcp.get_test_case_list()
 
     for test_case in test_cases_list:
