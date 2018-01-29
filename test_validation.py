@@ -1,3 +1,4 @@
+import logging
 import re
 from response_parser import ResponseParser
 
@@ -40,6 +41,7 @@ class TestValidation:
                 actual_result = self.response.status_code
             else:
                 actual_result = self.get_check_value_from_response_body(validation['check'])
+            logging.info("Validation item {} got!".format(validation['check']))
             yield (validation['comparator'], actual_result, validation['expected'])
 
 
